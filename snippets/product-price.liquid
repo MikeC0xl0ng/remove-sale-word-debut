@@ -14,6 +14,7 @@
     assign compare_at_price = variant.compare_at_price
     assign price = variant.price
     assign available = variant.available
+    assign savedPercantage = compare_at_price | divided_by: 100 | times: price | divided_by: 100 | append: '%'
   else
     assign compare_at_price = 1999
     assign price = 1999
@@ -79,7 +80,8 @@
     </div>
     <div class="price__badges">
       <span class="price__badge price__badge--sale" aria-hidden="true">
-        <span>{{ 'products.product.on_sale' | t }}</span>
+        {% comment %} <span>{{ 'products.product.on_sale' | t }}</span> {% endcomment %}
+        <span>{{ savedPercantage }} discounted</span>
       </span>
       <span class="price__badge price__badge--sold-out">
         <span>{{ 'products.product.sold_out' | t }}</span>
